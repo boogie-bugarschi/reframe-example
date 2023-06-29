@@ -1,4 +1,5 @@
 import { init, increment, decrement } from "./events";
+import { getCount, getAllTheState } from "./selectors";
 
 const initialState = {
   counter: 1,
@@ -27,4 +28,12 @@ test("decrements", () => {
     key: "count",
     value: 0,
   });
+});
+
+test("getCount", () => {
+  expect(getCount(initialState)).toBe(1);
+});
+
+test("getAllTheState", () => {
+  expect(getAllTheState(initialState)).toBe('{"counter":1}');
 });
