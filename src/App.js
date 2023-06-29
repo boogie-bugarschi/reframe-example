@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { useSelector, run, runSync } from "./reframe";
+import { init, increment, decrement, add } from "./events";
+import { getCount, getAllTheState } from "./selectors";
+
+runSync(init);
 
 function App() {
+  const count = useSelector(getCount);
+  const stateStr = useSelector(getAllTheState);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div> The count is {count}</div>
+      <button onClick={() => run(increment)}> + </button>
+      <button onClick={() => run(decrement)}> - </button>
+      <div>
+        The state looks like this <code>{stateStr}</code>
+      </div>
     </div>
   );
 }
