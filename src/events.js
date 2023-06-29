@@ -15,6 +15,11 @@ export function increment({ state }) {
       ...state,
       counter: newCount,
     },
+    localStorage: {
+      method: "save",
+      key: "count",
+      value: newCount,
+    },
   };
 }
 
@@ -23,10 +28,20 @@ increment.outputs = {
 };
 
 export function decrement({ state }) {
+  const newCount = state.counter - 1;
   return {
     state: {
       ...state,
-      counter: state.counter - 1,
+      counter: newCount,
+    },
+    localStorage: {
+      method: "save",
+      key: "count",
+      value: newCount,
     },
   };
 }
+
+decrement.outputs = {
+  localStorage: localStorage.output,
+};
